@@ -21,8 +21,10 @@ public class GetEmployeeByIdStepDefs {
 	HttpHeaders headers = new HttpHeaders();
 	ResponseEntity<String> response = null;
 	
+	
 	@When("the client calls \\/users\\/{int}")
 	public void the_client_calls_users(int userId) {
+		headers.add("user-agent","Mozilla/5.0 Firefox/26.0");
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 		response = restTemplate.exchange("https://reqres.in/api/users/"+userId, HttpMethod.GET, entity, String.class);
 	}
